@@ -2,24 +2,56 @@
 
 27 款免费离线工具，纯浏览器端运行，数据完全本地化，隐私安全。
 
+![Lighthouse](https://img.shields.io/badge/Lighthouse-100%2F96%2F94%2F100-brightgreen)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://github.com/abczzy2011-lab/toolbox)
+
+## ⚡ Google Lighthouse 评分
+
+| 维度 | 分数 |
+|------|------|
+| Performance 性能 | **100** |
+| Accessibility 无障碍 | **96** |
+| Best Practices 最佳实践 | **94** |
+| SEO 搜索优化 | **100** |
+
+---
+
 ## 安装方式
 
-### 1. Homebrew（macOS）
+### 1. Homebrew Tap（macOS / Linux）
 
 ```bash
-brew install toolbox
-```
-
-安装后自动启动：
-```bash
+brew tap abczzy2011-lab/tap
+brew install tool-box
 brew services start tool-box
-# 浏览器会自动打开 http://127.0.0.1:8899
+# 浏览器自动打开 http://localhost:8899
 ```
 
-手动操作：
+一行安装：
+
 ```bash
-brew services stop tool-box     # 停止服务
-brew services restart tool-box  # 重启服务
+brew tap abczzy2011-lab/tap && brew install tool-box && brew services start tool-box
+```
+
+更新：
+
+```bash
+brew update && brew upgrade tool-box
+```
+
+手动管理：
+
+```bash
+brew services stop tool-box      # 停止
+brew services restart tool-box   # 重启
+brew services status tool-box    # 状态
+```
+
+卸载：
+
+```bash
+brew uninstall tool-box
+brew untap abczzy2011-lab/tap
 ```
 
 ### 2. 手动安装
@@ -37,14 +69,18 @@ cd toolbox
 
 ---
 
+## 🌍 跨平台支持
+
+| 系统 | 安装方式 | 启动命令 | 浏览器打开 | 备注 |
+|------|----------|----------|-----------|------|
+| **macOS** | `brew tap abczzy2011-lab/tap && brew install tool-box` | `tool-box serve` | ✅ `open` 自动打开 | 支持 Apple Silicon + Intel |
+| **Linux** (x86_64/ARM64) | `brew install tool-box` (需先装 Homebrew) | `tool-box serve` | ✅ `xdg-open` 自动打开 | Ubuntu/Debian/Fedora/Arch |
+| **HarmonyOS** (NEXT) | 手动安装 | `node start.js` 或 `bash start.sh` | 手动打开 URL | DevEco Studio 终端 |
+| **Windows** | 手动安装 / WSL | 双击 `start.bat` | ✅ 自动打开 | 或 `tool-box serve` |
+
+---
+
 ## 📌 启动器功能说明
-
-### 跨平台支持
-
-| 系统 | 启动命令 | 浏览器打开 |
-|------|----------|-----------|
-| macOS | `./tool-box serve` | ✅ `open` 自动打开 |
-| Linux | `./tool-box serve` | ✅ `xdg-open` 自动打开 |
 
 ### 命令参考
 
@@ -60,20 +96,30 @@ cd toolbox
 
 ### 使用示例
 
-```bash
-# 启动后终端会显示：
-# ==============================================
-#   🛠️  万能工具箱  |  http://localhost:8899
-# ==============================================
-#
-#   🖥️  本机地址: http://192.168.0.111:8899
-#   🌐  本地地址: http://127.0.0.1:8899
-#
-#   📌 手机扫码/输入地址访问:
-#      http://192.168.0.111:8899
-#
-#   ⏹  停止服务: tool-box stop
 ```
+==============================================
+  🛠️  万能工具箱  |  http://localhost:8899
+==============================================
+
+  🖥️  本机地址: http://192.168.0.111:8899
+  🌐  本地地址: http://127.0.0.1:8899
+
+  📌 手机扫码/输入地址访问:
+     http://192.168.0.111:8899
+
+  ⏹  停止服务: tool-box stop
+```
+
+---
+
+## 🖱️ 双点击直接打开
+
+| 系统 | 操作 |
+|------|------|
+| macOS | 双击 `start.command` |
+| Windows | 双击 `start.bat` |
+| Linux | 双击 `start.command`（需有 bash） |
+| HarmonyOS | DevEco Studio 终端运行 `node start.js` |
 
 ---
 
@@ -87,20 +133,14 @@ cd toolbox
 
 ---
 
-## 双点击直接打开
-
-macOS：双击 `start.command`  
-Windows：双击 `start.bat`  
-
----
-
 ## 📁 目录结构
 
 ```
 toolbox/
 ├── tool-box          # 跨平台启动器（CLI）
-├── tool-box.rb       # Homebrew 公式
 ├── start.py          # Python HTTP 服务器
+├── start.js          # Node.js HTTP 服务器
+├── start.sh          # HarmonyOS/Linux 启动脚本
 ├── start.command     # macOS 双击启动
 ├── start.bat         # Windows 双击启动
 ├── postbuild.js      # 构建后修复
@@ -115,7 +155,7 @@ toolbox/
 
 ---
 
-## 🛠️ 包含工具
+## 🛠️ 包含 27 款工具
 
 | 分类 | 工具 |
 |------|------|
