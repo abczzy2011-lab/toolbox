@@ -1,0 +1,145 @@
+#!/bin/bash
+# 万能工具箱 - 智能启动器
+# 支持 macOS / Linux，自动检测局域网 IP 并打开浏览器
+
+SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
+[ -f "$SCRIPT_DIR/start.py" ] || SCRIPT_DIR="$(cd "$SCRIPT_DIR/.." && pwd)"
+[ -f "$SCRIPT_DIR/start.py" ] || {
+  echo "❌ 找不到 start.py，请检查安装。" >&2
+  exit 1
+}
+cd "$SCRIPT_DIR"
+
+# 检测系统
+OS=$(uname -s)
+PORT="${TOOLBOX_PORT:-8899}"
+export PORT
+NO_BROWSER=false
+
+# 解析参数
+while [[ $# -gt 0 ]]; do
+  case "$1" in
+    --no-browser) NO_BROWSER=true; shift ;;
+    --port) PORT="$2"; shift 2 ;;
+    --help|-h)
+      echo "用法: tool-box [serve|status|stop|ip|--no-browser|--port N]"
+      echo "  serve          启动服务并打开浏览器（默认）"
+      echo "  status         检查服务状态"
+      echo "  stop           停止服务"
+      echo "  ip             显示局域网地址"
+      echo "  --no-browser   启动但不自动打开浏览器"
+      echo "  --port N       指定端口号（默认 8899）"
+      exit 0
+      ;;
+    serve|start|"")
+      shift
+      break
+      ;;
+    status)
+      code=$(curl -s -o /dev/null -w "%{http_code}" "http://127.0.0.1:${PORT}/" 2>/dev/null)
+      [ "$code" = "200" ] && echo "✅ 服务运行中: http://127.0.0.1:${PORT}" || echo "❌ 服务未运行"
+      exit 0
+      ;;
+    stop)
+      pkill -f "python3 start.py" 2>/dev/null
+      brew services stop tool-box 2>/dev/null
+      lsof -ti:"${PORT}" 2>/dev/null | xargs kill -9 2>/dev/null
+      sleep 1
+      echo "✅ 服务已停止"
+      exit 0
+      ;;
+    ip)
+      python3 -c "
+import socket, os
+port = os.environ.get('PORT', '8899')
+try:
+    s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+    s.connect(('8.8.8.8', 80))
+    ip = s.getsockname()[0]
+    s.close()
+except:
+    ip = '127.0.0.1'
+print(f'http://{ip}:{port}')
+"
+      exit 0
+      ;;
+    *) echo "未知命令: $1"; exit 1 ;;
+  esac
+done
+
+# 检查端口是否已占用
+if command -v lsof &>/dev/null; then
+  pid=$(lsof -ti:"${PORT}" 2>/dev/null)
+elif command -v fuser &>/dev/null; then
+  pid=$(fuser "${PORT}/tcp" 2>/dev/null)
+fi
+if [ -n "$pid" ]; then
+  echo "⚠️  端口 ${PORT} 已被占用（PID: ${pid}），正在停止旧进程..."
+  kill -9 $pid 2>/dev/null
+  sleep 1
+fi
+
+# 启动服务（后台运行）
+nohup python3 start.py >/dev/null 2>&1 &
+SERVER_PID=$!
+sleep 2
+
+# 检查是否启动成功
+sleep 1
+if ! kill -0 $SERVER_PID 2>/dev/null; then
+  echo "❌ 服务启动失败，请检查 Python 环境。" >&2
+  exit 1
+fi
+
+# 检测局域网 IP
+if [ "$OS" = "Darwin" ]; then
+  # macOS: 优先用 Python socket 检测
+  LAN_IP=$(python3 -c "
+import socket
+try:
+    s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+    s.connect(('8.8.8.8', 80))
+    print(s.getsockname()[0])
+    s.close()
+except:
+    print('127.0.0.1')
+" 2>/dev/null)
+elif [ "$OS" = "Linux" ]; then
+  LAN_IP=$(python3 -c "
+import socket
+try:
+    s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+    s.connect(('8.8.8.8', 80))
+    print(s.getsockname()[0])
+    s.close()
+except:
+    print('127.0.0.1')
+" 2>/dev/null)
+fi
+[ -z "$LAN_IP" ] && LAN_IP="127.0.0.1"
+
+# 显示地址
+echo ""
+echo "=============================================="
+echo "  🛠️  万能工具箱  |  http://localhost:${PORT}"
+echo "=============================================="
+echo ""
+echo "  🖥️  本机地址: http://${LAN_IP}:${PORT}"
+echo "  🌐  本地地址: http://127.0.0.1:${PORT}"
+echo ""
+echo "  📌 手机扫码/输入地址访问:"
+echo "     http://${LAN_IP}:${PORT}"
+echo ""
+echo "  ⏹  停止服务: tool-box stop"
+echo ""
+
+# 不重复开浏览器（start.py 已处理）
+if [ "$NO_BROWSER" = false ] && [ "$OS" = "Darwin" ]; then
+  open "http://127.0.0.1:${PORT}" 2>/dev/null
+elif [ "$NO_BROWSER" = false ] && [ "$OS" = "Linux" ]; then
+  xdg-open "http://127.0.0.1:${PORT}" 2>/dev/null &
+fi
+
+echo ""
+echo "  🔄 服务运行中，端口 ${PORT}..."
+echo ""
