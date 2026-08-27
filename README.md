@@ -1,5 +1,8 @@
 # 🛠️ 万能工具箱
 
+![Lighthouse](https://img.shields.io/badge/Lighthouse-100%2F96%2F94%2F100-brightgreen)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://github.com/abczzy2011-lab/toolbox)
+
 > 写给每一个需要工具，却不想被工具困住的普通人。
 
 这不仅仅是一个工具箱——它是**你桌面上的瑞士军刀**，27 款工具，零安装、零注册、零数据上传，纯浏览器运行。
