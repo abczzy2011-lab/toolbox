@@ -1,6 +1,6 @@
 # 🛠️ 万能工具箱
 
-![Lighthouse](https://img.shields.io/badge/Lighthouse-100%2F96%2F94%2F100-brightgreen)
+![Lighthouse](https://img.shields.io/badge/Lighthouse-100%2F94%2F100%2F100-brightgreen)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://github.com/abczzy2011-lab/toolbox)
 
 > 写给每一个需要工具，却不想被工具困住的普通人。
@@ -18,8 +18,8 @@
 | 维度 | 分数 | 含义 |
 |------|------|------|
 | 🚀 Performance 性能 | **100** | 秒开，不卡顿 |
-| ♿ Accessibility 无障碍 | **96** | 所有人都能用 |
-| ⚙️ Best Practices 最佳实践 | **94** | 代码健康，安全合规 |
+| ♿ Accessibility 无障碍 | **94** | 所有人都能用 |
+| ⚙️ Best Practices 最佳实践 | **100** | 代码健康，安全合规 |
 | 🔍 SEO 搜索优化 | **100** | 搜索引擎友好 |
 
 > 实际测试截图：
