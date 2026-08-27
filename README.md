@@ -7,9 +7,9 @@
 [![Platform](https://img.shields.io/badge/Platform-macOS%20%7C%20Linux%20%7C%20Windows%20%7C%20HarmonyOS-lightgrey)](https://github.com/abczzy2011-lab/toolbox)
 [![Stars](https://img.shields.io/github/stars/abczzy2011-lab/toolbox?style=social)](https://github.com/abczzy2011-lab/toolbox)
 
-> 打开网页，解决问题，关掉网页，一切不留痕迹。
+> 你桌面上缺的那把瑞士军刀，来了。
 
-**27 款免费离线工具，纯浏览器运行，零安装 · 零注册 · 零数据上传**
+**27 款工具，零安装 · 零注册 · 零数据上传 · 零广告 · 零良心不安**
 
 </div>
 
@@ -25,50 +25,51 @@
 
 ---
 
-## ✨ 为什么选择万能工具箱
+## ✨ 说真的，你还要忍受那些在线工具吗？
 
-| | 万能工具箱 | 传统在线工具 |
+| | 万能工具箱 | 那些网站 |
 |---|---|---|
-| 隐私 | ✅ 数据完全本地，不上传 | ❌ 数据经过第三方服务器 |
-| 注册 | ✅ 零注册，打开即用 | ❌ 需要注册登录 |
-| 离线 | ✅ 纯离线运行 | ❌ 必须联网 |
-| 广告 | ✅ 零广告，零干扰 | ❌ 满屏广告 |
-| 价格 | ✅ 永久免费 | ❌ 需要付费解锁 |
-| 更新 | ✅ 一键更新 | ❌ 手动找新地址 |
+| 隐私 | ✅ 数据就在你电脑里 | ❌ 悄悄发到谁也不知道的服务器 |
+| 注册 | ✅ 打开就用 | ❌ 填个表单再等验证邮件 |
+| 离线 | ✅ 断网也能用 | ❌ 断网就成废纸了 |
+| 广告 | ✅ 一个都没有 | ❌ 弹广告比功能还多 |
+| 价格 | ✅ 永远免费 | ❌ "免费试用 7 天"？呵呵 |
+| 更新 | ✅ 一行命令搞定 | ❌ 收藏夹又失效了... |
+
+**说白了：这不是选择题，是智商题。**
 
 ---
 
-## 🚀 快速开始
+## 🚀 三步走，开干
 
-### Homebrew Tap（macOS / Linux，推荐）
+### Homebrew Tap（macOS / Linux，丝滑体验）
 
 ```bash
 brew tap abczzy2011-lab/tap && brew install tool-box && brew services start tool-box
 ```
 
-> 浏览器会自动打开 `http://localhost:8899`，开始用吧 🎉
+> 浏览器自动打开，开始用吧。就这么简单，真的。
 
-分步安装：
+分步来也行：
 
 ```bash
-brew tap abczzy2011-lab/tap        # 添加软件源
-brew install tool-box              # 安装工具箱
-brew services start tool-box       # 启动服务
+brew tap abczzy2011-lab/tap        # 加个软件源
+brew install tool-box              # 装上
+brew services start tool-box       # 开干
 ```
 
-管理命令：
+管它：
 
 ```bash
-brew services stop tool-box        # 停止
+brew services stop tool-box        # 停
 brew services restart tool-box     # 重启
-brew services status tool-box      # 状态
 brew update && brew upgrade tool-box # 更新
-brew uninstall tool-box            # 卸载
+brew uninstall tool-box            # 卸载（希望你不会需要）
 ```
 
-### 📦 还没有 Homebrew？
+### 📦 还没装 Homebrew？
 
-**macOS / Linux：** 一行安装
+**macOS / Linux：** 一行搞定
 
 ```bash
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
@@ -83,7 +84,7 @@ brew tap abczzy2011-lab/tap && brew install tool-box && brew services start tool
 
 更多平台安装见 [brew.sh](https://brew.sh)
 
-### 🖱️ 手动安装（Windows / HarmonyOS / 所有平台）
+### 🖱️ 手动安装（Windows / HarmonyOS / 懒得装 Homebrew 的你）
 
 ```bash
 unzip 万能工具箱-本地版.zip -d toolbox
@@ -110,7 +111,7 @@ cd toolbox
 
 ---
 
-## 💻 启动界面
+## 💻 启动后长这样
 
 ```
 ==============================================
@@ -126,11 +127,11 @@ cd toolbox
   ⏹  停止服务: tool-box stop
 ```
 
-> 💡 手机也能用：电脑运行后，用手机浏览器访问 `tool-box ip` 输出的地址，27 个工具全在。
+> 💡 **手机也能用**：电脑跑着，手机浏览器输个地址，27 个工具全在，出门在外也能用。
 
 ---
 
-## 🛠️ 27 款工具
+## 🛠️ 27 款工具，总有一款帮你
 
 | 分类 | 工具 |
 |------|------|
@@ -166,27 +167,27 @@ cd toolbox
 ## ❓ 常见问题
 
 **Q：数据安全吗？**
-> A：绝对安全。所有处理在浏览器本地完成，不上传任何服务器。
+> A：安全得离谱。所有处理都在你的浏览器里完成，关掉页面，数据消失得比你的工资还快。
 
 **Q：需要联网吗？**
-> A：不需要。纯离线运行。
+> A：不需要。纯离线，断网了照样能用。
 
 **Q：可以放 U 盘带吗？**
-> A：可以。解压到 U 盘，插上任何电脑双击即可。
+> A：可以。解压到 U 盘，插上任何电脑双击就能用。你的秘密武器，随身携带。
 
 **Q：怎么更新？**
-> A：`brew update && brew upgrade tool-box`，或重新下载解压覆盖。
+> A：`brew update && brew upgrade tool-box`，或者重新下载解压覆盖。
 
 ---
 
 ## 📄 许可证
 
-[MIT License](./LICENSE) © 2026 — 自由使用、修改、分发。
+[MIT License](./LICENSE) © 2026 — 想用怎么用，想改就改，想分发就分发。
 
 ---
 
 <div align="center">
 
-**⭐ 如果这个工具箱帮到了你，请给一个 Star，这是最大的鼓励！**
+**⭐ 觉得有用？给个 Star 吧！你的一次点击，就是我继续更新的动力 💛**
 
 </div>

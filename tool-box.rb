@@ -5,7 +5,7 @@ class ToolBox < Formula
   homepage "https://github.com/abczzy2011-lab/toolbox"
   url "https://github.com/abczzy2011-lab/toolbox/releases/download/v1.0.0/toolbox.zip"
   version "1.0.0"
-  sha256 "e09f53d2dce13fc16528269724fe71d24218813f7ec94e7dd3393ca44e48cd35"
+  sha256 "8f15c60510a5135a6aa28a75369e5abdb4b5123d9cdeb42c2e0b33c0c9540093"
   license "MIT"
 
   depends_on "python@3"
